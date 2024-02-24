@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import UpdatePasswordForm from "./Partials/UpdatePasswordForm.vue";
 import UpdateProfileInformationForm from "./Partials/UpdateProfileInformationForm.vue";
 import { Head } from "@inertiajs/vue3";
+import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 
 defineProps<{
   mustVerifyEmail?: boolean;
@@ -11,17 +11,12 @@ defineProps<{
 </script>
 
 <template>
-  <Head title="Profile" />
+  <Head title="Ustawienia Profilu" />
 
-  <AuthenticatedLayout>
-    <template #header>
-      <h2
-        class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"
-      >
-        Ustawienia profilu
-      </h2>
-    </template>
-
+  <DashboardLayout
+    header-title="Ustawienia profilu"
+    header-subtext="Tutaj możesz zarządzać swoim kontem."
+  >
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
         <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
@@ -37,5 +32,5 @@ defineProps<{
         </div>
       </div>
     </div>
-  </AuthenticatedLayout>
+  </DashboardLayout>
 </template>

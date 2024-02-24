@@ -76,3 +76,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.is-required {
+  @apply after:content-['*'] after:text-red-500 after:ml-1;
+}

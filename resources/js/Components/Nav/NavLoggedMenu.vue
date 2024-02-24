@@ -16,7 +16,7 @@ import MenuListItem from "@/Components/Nav/NavigationMenuListItem.vue";
     <MenuList>
       <MenuItem>
         <MenuLink
-          :href="route('dashboard')"
+          :href="route('profile.edit')"
           :class="navigationMenuTriggerStyle()"
         >
           Dashboard
@@ -24,9 +24,9 @@ import MenuListItem from "@/Components/Nav/NavigationMenuListItem.vue";
       </MenuItem>
 
       <MenuItem>
-        <MenuTrigger>User</MenuTrigger>
+        <MenuTrigger>Użytkownik</MenuTrigger>
         <MenuContent class="right-0">
-          <ul class="grid p-4 md:grid-cols w-44">
+          <ul class="grid p-4 md:grid-cols w-56">
             <MenuListItem :href="route('profile.edit')">
               Edit Profile
             </MenuListItem>

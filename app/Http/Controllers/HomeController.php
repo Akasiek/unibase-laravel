@@ -12,7 +12,7 @@ class HomeController extends Controller
     {
         $justLoggedIn = request()->session()->get('justLoggedIn', false);
 
-        return Inertia::render('Welcome', [
+        return Inertia::render('Home', [
             'canLogin' => Route::has('login'),
             'justLoggedIn' => $justLoggedIn,
         ]);
