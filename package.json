@@ -18,5 +18,20 @@
         "vite": "^5.0.0",
         "vue": "^3.4.0",
         "vue-tsc": "^1.8.27"
+    },
+    "dependencies": {
+        "@radix-ui/react-slot": "^1.0.2",
+        "@vee-validate/zod": "^4.12.5",
+        "@vueuse/core": "^10.8.0",
+        "class-variance-authority": "^0.7.0",
+        "clsx": "^2.1.0",
+        "lucide-react": "^0.338.0",
+        "lucide-vue-next": "^0.338.0",
+        "prettier": "^3.2.5",
+        "radix-vue": "^1.4.8",
+        "tailwind-merge": "^2.2.1",
+        "tailwindcss-animate": "^1.0.7",
+        "vee-validate": "^4.12.5",
+        "zod": "^3.22.4"
     }
 }
