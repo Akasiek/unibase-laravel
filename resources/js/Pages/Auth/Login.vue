@@ -81,7 +81,7 @@ const submit = () => {
         </FormItem>
       </FormField>
 
-      <Button type="submit"> Submit</Button>
+      <Button type="submit">Zaloguj</Button>
     </form>
   </IslandLayout>
 </template>
