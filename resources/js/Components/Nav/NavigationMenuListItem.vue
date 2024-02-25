@@ -14,7 +14,7 @@ defineProps<{
       <Link
         :href="href"
         :method="method"
-        class="focus:shadow-[0_0_0_2px] hover:bg-gray-100 block select-none rounded-[6px] p-3 text-[15px] leading-none no-underline outline-none transition-colors dark:hover:bg-gray-800 dark:text-white"
+        class="focus:shadow-[0_0_0_2px] hover:bg-zinc-100 block select-none rounded-[6px] p-3 text-[15px] leading-none no-underline outline-none transition-colors dark:hover:bg-zinc-800 dark:text-white"
       >
         <div class="font-medium leading-[1.2] text-sm">
           <slot />

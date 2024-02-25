@@ -5,7 +5,7 @@
   "tailwind": {
     "config": "tailwind.config.js",
     "css": "resources/css/app.css",
-    "baseColor": "slate",
+    "baseColor": "zinc",
     "cssVariables": false
   },
   "framework": "laravel",

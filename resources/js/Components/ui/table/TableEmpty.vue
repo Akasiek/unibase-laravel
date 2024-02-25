@@ -1,21 +1,24 @@
 <script setup lang="ts">
-import { type HTMLAttributes, computed } from 'vue'
-import TableRow from './TableRow.vue'
-import TableCell from './TableCell.vue'
-import { cn } from '@/lib/utils'
+import { computed, type HTMLAttributes } from "vue";
+import TableRow from "./TableRow.vue";
+import TableCell from "./TableCell.vue";
+import { cn } from "@/lib/utils";
 
-const props = withDefaults(defineProps<{
-  class?: HTMLAttributes['class']
-  colspan?: number
-}>(), {
-  colspan: 1,
-})
+const props = withDefaults(
+  defineProps<{
+    class?: HTMLAttributes["class"];
+    colspan?: number;
+  }>(),
+  {
+    colspan: 1,
+  },
+);
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const { class: _, ...delegated } = props;
 
-  return delegated
-})
+  return delegated;
+});
 </script>
 
 <template>
@@ -23,7 +26,7 @@ const delegatedProps = computed(() => {
     <TableCell
       :class="
         cn(
-          'p-4 whitespace-nowrap align-middle text-sm text-slate-950 dark:text-slate-50',
+          'p-4 whitespace-nowrap align-middle text-sm text-zinc-950 dark:text-zinc-50',
           props.class,
         )
       "

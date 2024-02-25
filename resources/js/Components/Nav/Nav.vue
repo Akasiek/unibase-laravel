@@ -8,7 +8,7 @@ import { Separator } from "@/Components/ui/separator";
 
 <template>
   <nav
-    class="sticky top-0 w-full inset-x-0 flex justify-between p-6 shadow-md shadow-gray-500/10 bg-white dark:bg-gray-900 dark:text-white"
+    class="sticky top-0 w-full inset-x-0 flex justify-between p-6 shadow-xl shadow-zinc-950 bg-white dark:bg-zinc-950 dark:text-white"
   >
     <div class="flex items-center text-lg">
       <Link :href="route('home')" class="font-semibold">UniBase</Link>

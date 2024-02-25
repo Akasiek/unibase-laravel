@@ -23,7 +23,7 @@ defineProps<{
     <AlertDialogTrigger
       ><Trash2Icon
         :class="
-          'h-5 text-slate-600 hover:text-slate-800 dark:hover:text-slate-400 transition' ||
+          'h-5 text-zinc-600 hover:text-zinc-800 dark:hover:text-zinc-400 transition' ||
           className
         "
     /></AlertDialogTrigger>

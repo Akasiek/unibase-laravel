@@ -39,9 +39,7 @@ defineProps<{
       <TableRow
         v-for="subject in subjects"
         :key="subject.id"
-        :class="
-          subject.is_archived ? 'bg-slate-200/60 dark:bg-slate-800/70' : ''
-        "
+        :class="subject.is_archived ? 'bg-zinc-200/60 dark:bg-zinc-800/70' : ''"
       >
         <TableCell class="font-medium"> {{ subject.name }} </TableCell>
         <TableCell>

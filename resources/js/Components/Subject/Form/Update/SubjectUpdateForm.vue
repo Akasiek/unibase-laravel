@@ -17,7 +17,7 @@ defineProps<{
   <ModalContainer modal-title="Zaktualizuj przedmiot">
     <template #trigger>
       <PencilIcon
-        class="h-5 text-slate-600 hover:text-slate-800 dark:hover:text-slate-400 transition"
+        class="h-5 text-zinc-600 hover:text-zinc-800 dark:hover:text-zinc-400 transition"
       />
     </template>
 
