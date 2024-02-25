@@ -2,6 +2,8 @@
 import { Link } from "@inertiajs/vue3";
 import NavLoggedMenu from "@/Components/Nav/NavLoggedMenu.vue";
 import NavGuestMenu from "@/Components/Nav/NavGuestMenu.vue";
+import ThemeToggler from "@/Components/ThemeToggler.vue";
+import { Separator } from "@/Components/ui/separator";
 </script>
 
 <template>
@@ -19,6 +21,10 @@ import NavGuestMenu from "@/Components/Nav/NavGuestMenu.vue";
       <template v-else>
         <NavGuestMenu />
       </template>
+
+      <Separator orientation="vertical" />
+
+      <ThemeToggler />
     </div>
   </nav>
 </template>
