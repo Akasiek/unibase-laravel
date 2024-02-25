@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 import { Head } from "@inertiajs/vue3";
-import { SubjectForm } from "@/Components/Subject/Form";
+import DashboardLayout from "@/Layouts/DashboardLayout.vue";
+import { SubjectCreateForm } from "@/Components/Subject/Form/Create";
 import { SubjectTable } from "@/Components/Subject/Table";
-import { Button } from "@/Components/ui/button";
-import { PlusIcon } from "lucide-vue-next";
 
 const { subjects } = defineProps<{
   subjects: {
@@ -23,12 +21,7 @@ const { subjects } = defineProps<{
     header-title="Przedmioty"
     header-subtext="Dodaj, edytuj lub usuń przedmioty."
   >
-    <SubjectForm>
-      <Button variant="outline">
-        <PlusIcon class="h-4 mr-1" />
-        Dodaj przedmiot
-      </Button>
-    </SubjectForm>
+    <SubjectCreateForm />
 
     <SubjectTable :subjects="subjects" />
   </DashboardLayout>

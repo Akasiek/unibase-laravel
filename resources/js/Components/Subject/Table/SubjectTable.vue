@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { router } from "@inertiajs/vue3";
-
-import { PencilIcon } from "lucide-vue-next";
 import {
   Table,
   TableBody,
@@ -12,7 +10,7 @@ import {
   TableRow,
 } from "@/Components/ui/table";
 import { Badge } from "@/Components/ui/badge";
-import { SubjectForm } from "@/Components/Subject/Form";
+import { SubjectUpdateForm } from "@/Components/Subject/Form/Update";
 import DeleteModal from "@/Components/DeleteModal.vue";
 
 defineProps<{
@@ -49,7 +47,6 @@ const handleDelete = (id: number) => {
         :class="subject.is_archived ? 'bg-slate-200/60' : ''"
       >
         <TableCell class="font-medium"> {{ subject.name }} </TableCell>
-        <!--        <TableCell>{{ subject.color }}</TableCell>-->
         <TableCell>
           <Badge
             :style="{ backgroundColor: subject.color }"
@@ -61,18 +58,10 @@ const handleDelete = (id: number) => {
         </TableCell>
         <TableCell>{{ subject.is_archived ? "Tak" : "Nie" }}</TableCell>
         <TableCell class="space-x-2">
-          <SubjectForm :subject="subject">
-            <PencilIcon class="h-5 text-slate-600 :hover:text-slate-800" />
-          </SubjectForm>
+          <SubjectUpdateForm :subject="subject" />
           <DeleteModal :handle-delete="() => handleDelete(subject.id)" />
         </TableCell>
       </TableRow>
-
-      <!--      <TableRow>-->
-      <!--        <TableCell class="font-medium"> INV001 </TableCell>-->
-      <!--        <TableCell>Paid</TableCell>-->
-      <!--        <TableCell>Credit Card</TableCell>-->
-      <!--      </TableRow>-->
     </TableBody>
   </Table>
 </template>

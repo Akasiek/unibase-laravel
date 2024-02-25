@@ -28,7 +28,7 @@ const form = useForm({
   archived_at: subject?.archived_at || "",
 });
 
-const emit = defineEmits(["close-modal"]);
+const emit = defineEmits(["success"]);
 
 const submit = () => {
   form.archived_at = form.archive ? new Date().toISOString() : "";
@@ -62,7 +62,7 @@ const handleSuccess = (isEdit = false) => {
       ? `Przedmiot ${form.name} został zaktualizowany.`
       : `Przedmiot ${form.name} został dodany do bazy.`,
   });
-  emit("close-modal");
+  emit("success");
 };
 
 const handleError = () => {
@@ -126,7 +126,7 @@ const handleError = () => {
       </FormItem>
     </FormField>
 
-    <Button type="submit" @click="$emit('close')">Dodaj</Button>
+    <Button type="submit">Dodaj</Button>
   </form>
 </template>
 

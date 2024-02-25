@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-
 import {
   Dialog,
   DialogContent,
@@ -8,34 +7,30 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/Components/ui/dialog";
-import SubjectForm from "@/Components/Subject/Form/SubjectForm.vue";
-
-defineProps<{
-  subject?: {
-    id: number;
-    name: string;
-    color: string;
-    archived_at: string;
-  };
-}>();
 
 const open = ref(false);
+
+const closeModal = () => {
+  open.value = false;
+};
+
+defineProps<{
+  modalTitle: string;
+}>();
 </script>
 
 <template>
   <Dialog v-model:open="open">
     <DialogTrigger>
-      <slot />
+      <slot name="trigger" />
     </DialogTrigger>
 
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Dodaj przedmiot</DialogTitle>
+        <DialogTitle>{{ modalTitle }}</DialogTitle>
       </DialogHeader>
 
-      <SubjectForm @close-modal="() => (open = false)" :subject="subject" />
+      <slot :handleClose="closeModal" />
     </DialogContent>
   </Dialog>
 </template>
-
-<style scoped></style>
