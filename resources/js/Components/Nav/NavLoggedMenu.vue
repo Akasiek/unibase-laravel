@@ -28,11 +28,11 @@ import MenuListItem from "@/Components/Nav/NavigationMenuListItem.vue";
         <MenuContent class="right-0">
           <ul class="grid p-4 md:grid-cols w-56">
             <MenuListItem :href="route('profile.edit')">
-              Edit Profile
+              Edytuj profil
             </MenuListItem>
 
             <MenuListItem :href="route('logout')" method="post">
-              Log Out
+              Wyloguj
             </MenuListItem>
           </ul>
         </MenuContent>

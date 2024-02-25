@@ -34,7 +34,7 @@ const submit = () => {
 
 <template>
   <IslandLayout>
-    <Head title="Log in" />
+    <Head title="Zaloguj się" />
 
     <form class="space-y-6" @submit.prevent="submit">
       <FormField name="email" v-slot="{ componentField }" v-model="form.email">

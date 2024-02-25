@@ -13,7 +13,7 @@ import {
     <MenuList>
       <MenuItem>
         <MenuLink :href="route('login')" :class="navigationMenuTriggerStyle()">
-          Log In
+          Zaloguj
         </MenuLink>
       </MenuItem>
     </MenuList>
