@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventTypeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LectureController;
 use App\Http\Controllers\ProfileController;
@@ -45,6 +47,24 @@ Route::controller(SubjectController::class)->group(function () {
     Route::patch('/subjects/{subject}', 'update')->name('subjects.update');
     Route::put('/subjects/{subject}', 'update')->name('subjects.update');
     Route::delete('/subjects/{subject}', 'destroy')->name('subjects.destroy');
+});
+
+Route::controller(EventTypeController::class)->group(function () {
+    // Route::get('/event-types', 'index')->name('event-types.index');
+    Route::get('/event-types/dashboard', 'dashboard')->name('event-types.dashboard');
+    Route::post('/event-types', 'store')->name('event-types.store');
+    // Route::get('/event-types/{eventType}', 'show')->name('event-types.show');
+    Route::patch('/event-types/{eventType}', 'update')->name('event-types.update');
+    Route::delete('/event-types/{eventType}', 'destroy')->name('event-types.destroy');
+});
+
+Route::controller(EventController::class)->group(function () {
+    // Route::get('/events', 'index')->name('events.index');
+    Route::get('/events/dashboard', 'dashboard')->name('events.dashboard');
+    Route::post('/events', 'store')->name('events.store');
+    // Route::get('/events/{event}', 'show')->name('events.show');
+    Route::patch('/events/{event}', 'update')->name('events.update');
+    Route::delete('/events/{event}', 'destroy')->name('events.destroy');
 });
 
 Route::get('/dashboard', function () {

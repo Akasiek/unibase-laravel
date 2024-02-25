@@ -19,6 +19,10 @@ const sidebarNavItems: Item[] = [
     href: route("subjects.dashboard"),
   },
   {
+    title: "Rodzaje wydarzeń",
+    href: route("event-types.dashboard"),
+  },
+  {
     title: "Wydarzenia",
     // href: route("events.dashboard"),
     href: route("home"),

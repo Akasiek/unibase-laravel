@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EventTypeRequest;
 use App\Models\EventType;
+use Inertia\Inertia;
 
 class EventTypeController extends Controller
 {
@@ -12,9 +13,20 @@ class EventTypeController extends Controller
         return EventType::all();
     }
 
+    public function dashboard()
+    {
+        $eventTypes = EventType::all();
+
+        return Inertia::render('EventType/Dashboard', [
+            'eventTypes' => $eventTypes
+        ]);
+    }
+
     public function store(EventTypeRequest $request)
     {
-        return EventType::create($request->validated());
+        EventType::create($request->validated());
+
+        return redirect()->route('event-types.dashboard');
     }
 
     public function show(EventType $eventType)
@@ -26,13 +38,13 @@ class EventTypeController extends Controller
     {
         $eventType->update($request->validated());
 
-        return $eventType;
+        return redirect()->route('event-types.dashboard');
     }
 
     public function destroy(EventType $eventType)
     {
         $eventType->delete();
 
-        return response()->json();
+        return redirect()->route('event-types.dashboard');
     }
 }
