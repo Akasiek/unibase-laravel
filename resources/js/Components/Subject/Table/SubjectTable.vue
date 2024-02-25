@@ -44,7 +44,9 @@ const handleDelete = (id: number) => {
       <TableRow
         v-for="subject in subjects"
         :key="subject.id"
-        :class="subject.is_archived ? 'bg-slate-200/60' : ''"
+        :class="
+          subject.is_archived ? 'bg-slate-200/60 dark:bg-slate-800/70' : ''
+        "
       >
         <TableCell class="font-medium"> {{ subject.name }} </TableCell>
         <TableCell>
