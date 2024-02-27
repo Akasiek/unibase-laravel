@@ -16,21 +16,19 @@ const sidebarNavItems: Item[] = [
   },
   {
     title: "Przedmioty",
-    href: route("subjects.dashboard"),
+    href: route("dashboard.subjects"),
   },
   {
     title: "Rodzaje wydarzeń",
-    href: route("event-types.dashboard"),
+    href: route("dashboard.event-types"),
   },
   {
     title: "Wydarzenia",
-    // href: route("events.dashboard"),
-    href: route("home"),
+    href: route("dashboard.events"),
   },
   {
     title: "Wykłady",
-    // href: route("lectures.dashboard"),
-    href: route("home"),
+    href: route("dashboard.lectures"),
   },
 ];
 

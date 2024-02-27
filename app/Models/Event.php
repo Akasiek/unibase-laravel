@@ -19,8 +19,13 @@ class Event extends Model
         'date' => 'datetime',
     ];
 
-    protected function subject(): BelongsTo
+    public function subject(): BelongsTo
     {
         return $this->belongsTo(Subject::class);
+    }
+
+    public function eventType(): BelongsTo
+    {
+        return $this->belongsTo(EventType::class);
     }
 }

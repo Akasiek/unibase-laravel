@@ -11,8 +11,8 @@ return new class extends Migration {
             $table->id();
 
             $table->string('name');
-            $table->dateTime('date');
-            $table->text('info');
+            $table->dateTime('date')->nullable();
+            $table->text('info')->nullable();
 
             $table->foreignId('event_type_id')->constrained('event_types');
             $table->foreignId('subject_id')->nullable()->constrained('subjects');

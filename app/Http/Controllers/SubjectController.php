@@ -26,7 +26,7 @@ class SubjectController extends Controller
     {
         Subject::create($request->validated());
 
-        return redirect()->route('subjects.dashboard');
+        return redirect()->route('dashboard.subjects');
     }
 
     public function show(Subject $subject)
@@ -38,13 +38,13 @@ class SubjectController extends Controller
     {
         $subject->update($request->validated());
 
-        return redirect()->route('subjects.dashboard');
+        return redirect()->route('dashboard.subjects');
     }
 
     public function destroy(Subject $subject)
     {
         $subject->delete();
 
-        return redirect()->route('subjects.dashboard');
+        return redirect()->route('dashboard.subjects');
     }
 }

@@ -16,7 +16,7 @@ import MenuListItem from "@/Components/Nav/NavigationMenuListItem.vue";
     <MenuList>
       <MenuItem>
         <MenuLink
-          :href="route('profile.edit')"
+          :href="route('dashboard.subjects')"
           :class="navigationMenuTriggerStyle()"
         >
           Dashboard

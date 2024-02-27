@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EventRequest;
 use App\Models\Event;
+use App\Models\EventType;
+use App\Models\Subject;
+use Inertia\Inertia;
 
 class EventController extends Controller
 {
@@ -12,9 +15,24 @@ class EventController extends Controller
         return Event::all();
     }
 
+    public function dashboard()
+    {
+        $events = Event::with('subject', 'eventType')->get();
+        $eventTypes = EventType::all();
+        $subjects = Subject::all();
+
+        return Inertia::render('Event/Dashboard', [
+            'events' => $events,
+            'eventTypes' => $eventTypes,
+            'subjects' => $subjects
+        ]);
+    }
+
     public function store(EventRequest $request)
     {
-        return Event::create($request->validated());
+        Event::create($request->validated());
+
+        return redirect()->route('dashboard.events');
     }
 
     public function show(Event $event)
@@ -26,13 +44,13 @@ class EventController extends Controller
     {
         $event->update($request->validated());
 
-        return $event;
+        return redirect()->route('dashboard.events');
     }
 
     public function destroy(Event $event)
     {
         $event->delete();
 
-        return response()->json();
+        return redirect()->route('dashboard.events');
     }
 }

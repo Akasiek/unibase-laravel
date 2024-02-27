@@ -10,8 +10,10 @@ class EventRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'date' => ['required', 'date'],
-            'info' => ['required'],
+            'date' => ['sometimes', 'date'],
+            'info' => ['sometimes'],
+            'event_type_id' => ['required', 'exists:event_types,id'],
+            'subject_id' => ['sometimes', 'exists:subjects,id'],
         ];
     }
 

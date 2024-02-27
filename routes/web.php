@@ -20,15 +20,16 @@ use Inertia\Inertia;
 |
 */
 
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         // 'justLoggedIn' => true,
-//     ]);
-// });
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
+});
+
+Route::prefix('dashboard')->middleware('auth')->group(function () {
+    Route::get('/events', [EventController::class, 'dashboard'])->name('dashboard.events');
+    Route::get('/subjects', [SubjectController::class, 'dashboard'])->name('dashboard.subjects');
+    Route::get('/lectures', [LectureController::class, 'dashboard'])->name('dashboard.lectures');
+    Route::get('/event-types', [EventTypeController::class, 'dashboard'])->name('dashboard.event-types');
 });
 
 Route::controller(LectureController::class)->group(function () {
@@ -40,8 +41,7 @@ Route::controller(LectureController::class)->group(function () {
 });
 
 Route::controller(SubjectController::class)->group(function () {
-    // Route::get('/subjects', 'index')->name('subjects.index');
-    Route::middleware('auth')->get('/subjects/dashboard', 'dashboard')->name('subjects.dashboard');
+    Route::get('/subjects', 'index')->name('subjects.index');
     Route::post('/subjects', 'store')->name('subjects.store');
     Route::get('/subjects/{subject}', 'show')->name('subjects.show');
     Route::patch('/subjects/{subject}', 'update')->name('subjects.update');
@@ -50,19 +50,17 @@ Route::controller(SubjectController::class)->group(function () {
 });
 
 Route::controller(EventTypeController::class)->group(function () {
-    // Route::get('/event-types', 'index')->name('event-types.index');
-    Route::get('/event-types/dashboard', 'dashboard')->name('event-types.dashboard');
+    Route::get('/event-types', 'index')->name('event-types.index');
     Route::post('/event-types', 'store')->name('event-types.store');
-    // Route::get('/event-types/{eventType}', 'show')->name('event-types.show');
+    Route::get('/event-types/{eventType}', 'show')->name('event-types.show');
     Route::patch('/event-types/{eventType}', 'update')->name('event-types.update');
     Route::delete('/event-types/{eventType}', 'destroy')->name('event-types.destroy');
 });
 
 Route::controller(EventController::class)->group(function () {
-    // Route::get('/events', 'index')->name('events.index');
-    Route::get('/events/dashboard', 'dashboard')->name('events.dashboard');
+    Route::get('/events', 'index')->name('events.index');
     Route::post('/events', 'store')->name('events.store');
-    // Route::get('/events/{event}', 'show')->name('events.show');
+    Route::get('/events/{event}', 'show')->name('events.show');
     Route::patch('/events/{event}', 'update')->name('events.update');
     Route::delete('/events/{event}', 'destroy')->name('events.destroy');
 });
@@ -72,7 +70,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

@@ -26,7 +26,7 @@ class EventTypeController extends Controller
     {
         EventType::create($request->validated());
 
-        return redirect()->route('event-types.dashboard');
+        return redirect()->route('dashboard.event-types');
     }
 
     public function show(EventType $eventType)
@@ -38,13 +38,13 @@ class EventTypeController extends Controller
     {
         $eventType->update($request->validated());
 
-        return redirect()->route('event-types.dashboard');
+        return redirect()->route('dashboard.event-types');
     }
 
     public function destroy(EventType $eventType)
     {
         $eventType->delete();
 
-        return redirect()->route('event-types.dashboard');
+        return redirect()->route('dashboard.event-types');
     }
 }
