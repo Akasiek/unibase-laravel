@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\FixTimeZone;
 use App\Http\Requests\LectureRequest;
 use App\Models\Lecture;
+use App\Models\Subject;
+use Exception;
 use Inertia\Inertia;
 
 class LectureController extends Controller
@@ -19,16 +22,32 @@ class LectureController extends Controller
             return $lecture;
         });
 
-        return Inertia::render('Lectures/Index', [
+        return Inertia::render('Lecture/Index', [
             'lectures' => $lectures,
+        ]);
+    }
+
+    public function dashboard()
+    {
+        $lectures = Lecture::with('subject', 'videos')->get();
+        $subjects = Subject::all();
+
+        return Inertia::render('Lecture/Dashboard', [
+            'lectures' => $lectures,
+            'subjects' => $subjects
         ]);
     }
 
     public function store(LectureRequest $request)
     {
-        $this->prepareVideos($request);
+        $lecture = Lecture::create($request->validated());
+        $lecture->videos()->createMany($request->videos);
 
-        return Lecture::create($request->validated());
+        // Fix date timezone
+        $lecture->date = FixTimeZone::call($request->date);
+        $lecture->save();
+
+        return redirect()->route('dashboard.lectures');
     }
 
     public function show(Lecture $lecture)
@@ -36,13 +55,24 @@ class LectureController extends Controller
         return $lecture->load('videos');
     }
 
+    /**
+     * @throws Exception
+     */
     public function update(LectureRequest $request, Lecture $lecture)
     {
-        $this->prepareVideos($request);
+        if ($request->validated()) {
+            // Delete all videos before inserting new ones
+            $lecture->videos()->delete();
 
-        $lecture->update($request->validated());
+            $lecture->update($request->validated());
+            $lecture->videos()->createMany($request->videos);
 
-        return $lecture;
+            // Fix date timezone
+            $lecture->date = FixTimeZone::call($request->date);
+            $lecture->save();
+        }
+
+        return redirect()->route('dashboard.lectures');
     }
 
     public function destroy(Lecture $lecture)
@@ -50,35 +80,6 @@ class LectureController extends Controller
         $lecture->videos()->delete();
         $lecture->delete();
 
-        return response()->json();
-    }
-
-    private function prepareVideos(LectureRequest $request): void
-    {
-        if ($request->has('videos')) {
-            $videos = $request->videos;
-            $videos = array_map(function ($video) {
-                return [
-                    'url' => $video['url'],
-                    'title' => $video['title'],
-                ];
-            }, $videos);
-
-            if (count($videos) > 0) {
-                $this->validateVideos($videos);
-            }
-
-            $request->merge(['videos' => $videos]);
-        }
-    }
-
-    private function validateVideos(array $videos): void
-    {
-        foreach ($videos as $video) {
-            $this->validate($video, [
-                'url' => ['required', 'url'],
-                'title' => ['required'],
-            ]);
-        }
+        return redirect()->route('dashboard.lectures');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LectureRequest extends FormRequest
@@ -9,15 +10,19 @@ class LectureRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'notion_link' => ['nullable'],
             'date' => ['required', 'date'],
-            'summary' => ['required'],
+            'subject_id' => ['required', 'exists:subjects,id'],
+
+            'summary' => ['nullable', 'string'],
+            'notion_link' => ['nullable', 'string', 'url'],
+
             'videos' => ['nullable', 'array'],
+            'videos.*.youtube_link' => ['required', 'url'],
         ];
     }
 
     public function authorize(): bool
     {
-        return true;
+        return Auth::check();
     }
 }

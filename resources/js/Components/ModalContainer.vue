@@ -2,8 +2,8 @@
 import { ref } from "vue";
 import {
   Dialog,
-  DialogContent,
   DialogHeader,
+  DialogScrollContent,
   DialogTitle,
   DialogTrigger,
 } from "@/Components/ui/dialog";
@@ -25,12 +25,12 @@ defineProps<{
       <slot name="trigger" />
     </DialogTrigger>
 
-    <DialogContent>
+    <DialogScrollContent>
       <DialogHeader>
         <DialogTitle>{{ modalTitle }}</DialogTitle>
       </DialogHeader>
 
       <slot :handleClose="closeModal" />
-    </DialogContent>
+    </DialogScrollContent>
   </Dialog>
 </template>

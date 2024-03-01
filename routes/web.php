@@ -34,10 +34,10 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
 Route::controller(LectureController::class)->group(function () {
     Route::get('/lectures', 'index')->name('lectures.index');
-    // Route::post('/lectures', 'store')->name('lectures.store');
-    // Route::get('/lectures/{lecture}', 'show')->name('lectures.show');
-    // Route::patch('/lectures/{lecture}', 'update')->name('lectures.update');
-    // Route::delete('/lectures/{lecture}', 'destroy')->name('lectures.destroy');
+    Route::post('/lectures', 'store')->name('lectures.store');
+    Route::get('/lectures/{lecture}', 'show')->name('lectures.show');
+    Route::patch('/lectures/{lecture}', 'update')->name('lectures.update');
+    Route::delete('/lectures/{lecture}', 'destroy')->name('lectures.destroy');
 });
 
 Route::controller(SubjectController::class)->group(function () {

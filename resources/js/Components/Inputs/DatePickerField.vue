@@ -24,6 +24,7 @@ defineProps<{
   fieldName: string;
   fieldError: string | undefined;
   label: string;
+  isRequired?: boolean;
 }>();
 </script>
 
@@ -35,7 +36,7 @@ defineProps<{
     @update:model-value="$emit('update:modelValue', $event)"
   >
     <FormItem class="flex flex-col">
-      <FormLabel>{{ label }}</FormLabel>
+      <FormLabel :class="{ 'is-required': isRequired }">{{ label }}</FormLabel>
       <Popover>
         <PopoverTrigger as-child>
           <FormControl>

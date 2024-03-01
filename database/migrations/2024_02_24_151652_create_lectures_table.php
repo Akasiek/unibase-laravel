@@ -10,9 +10,9 @@ return new class extends Migration {
         Schema::create('lectures', function (Blueprint $table) {
             $table->id();
 
-            $table->string('notion_link')->nullable();
             $table->date('date');
-            $table->string('summary');
+            $table->string('summary')->nullable();
+            $table->string('notion_link')->nullable();
             $table->foreignId('subject_id')->constrained('subjects');
 
             $table->timestamps();

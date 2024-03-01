@@ -9,22 +9,22 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Lecture extends Model
 {
     protected $fillable = [
-        'notion_link',
         'date',
         'summary',
-        'subject_id'
+        'subject_id',
+        'notion_link',
     ];
 
     protected $casts = [
         'date' => 'date',
     ];
 
-    protected function subject(): BelongsTo
+    public function subject(): BelongsTo
     {
         return $this->belongsTo(Subject::class);
     }
 
-    protected function videos(): HasMany
+    public function videos(): HasMany
     {
         return $this->hasMany(LectureVideo::class);
     }
