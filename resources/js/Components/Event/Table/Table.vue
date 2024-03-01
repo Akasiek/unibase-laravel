@@ -13,28 +13,9 @@ import { EventUpdateForm } from "@/Components/Event/Form";
 import { EventDeleteDialog } from "@/Components/Event/Delete";
 
 defineProps<{
-  events: {
-    id: number;
-    name: string;
-    date?: Date;
-    info?: string;
-    subject?: {
-      id: number;
-      name: string;
-    };
-    event_type: {
-      id: number;
-      name: string;
-    };
-  }[];
-  eventTypes: {
-    id: number;
-    name: string;
-  }[];
-  subjects: {
-    id: number;
-    name: string;
-  }[];
+  events: Event[];
+  eventTypes: EventType[];
+  subjects: Subject[];
 }>();
 </script>
 

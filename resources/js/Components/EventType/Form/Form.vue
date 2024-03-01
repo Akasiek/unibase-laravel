@@ -12,10 +12,7 @@ import InputError from "@/Components/InputError.vue";
 import { toast } from "@/Components/ui/toast";
 
 const { eventType } = defineProps<{
-  eventType?: {
-    id: number;
-    name: string;
-  };
+  eventType?: EventType;
 }>();
 
 const form = useForm({

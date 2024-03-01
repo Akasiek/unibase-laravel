@@ -5,24 +5,8 @@ import { LectureCreateForm } from "@/Components/Lecture/Form";
 import { LectureTable } from "@/Components/Lecture/Table";
 
 defineProps<{
-  lectures: {
-    id: number;
-    date: Date;
-    notion_link?: string;
-    summary?: string;
-    subject: {
-      id: number;
-      name: string;
-    };
-    videos: {
-      id: number;
-      youtube_link: string;
-    }[];
-  }[];
-  subjects: {
-    id: number;
-    name: string;
-  }[];
+  lectures: Lecture[];
+  subjects: Subject[];
 }>();
 </script>
 

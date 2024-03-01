@@ -10,22 +10,9 @@ import {
 } from "@/Components/Inputs";
 
 const { event } = defineProps<{
-  event?: {
-    id: number;
-    name: string;
-    date?: Date;
-    info?: string;
-    event_type_id: number;
-    subject_id?: number;
-  };
-  subjects: {
-    id: number;
-    name: string;
-  }[];
-  eventTypes: {
-    id: number;
-    name: string;
-  }[];
+  event?: Event;
+  subjects: Subject[];
+  eventTypes: EventType[];
 }>();
 
 const form = useForm({

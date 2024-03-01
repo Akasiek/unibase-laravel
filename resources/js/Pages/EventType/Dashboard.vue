@@ -6,10 +6,7 @@ import { EventTypeCreateForm } from "@/Components/EventType/Form";
 import { EventTypeTable } from "@/Components/EventType/Table";
 
 defineProps<{
-  eventTypes: {
-    id: number;
-    name: string;
-  }[];
+  eventTypes: EventType[];
 }>();
 </script>
 

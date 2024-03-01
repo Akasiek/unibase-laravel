@@ -4,12 +4,7 @@ import SubjectForm from "@/Components/Subject/Form/SubjectForm.vue";
 import { PencilIcon } from "lucide-vue-next";
 
 defineProps<{
-  subject: {
-    id: number;
-    name: string;
-    color: string;
-    is_archived: boolean;
-  };
+  subject: Subject;
 }>();
 </script>
 

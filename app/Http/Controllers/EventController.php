@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\FixTimeZone;
 use App\Http\Requests\EventRequest;
 use App\Models\Event;
 use App\Models\EventType;
@@ -30,7 +31,12 @@ class EventController extends Controller
 
     public function store(EventRequest $request)
     {
-        Event::create($request->validated());
+        $event = Event::create($request->validated());
+
+        if ($event->date !== null) {
+            $event->date = FixTimeZone::call($request->date);
+            $event->save();
+        }
 
         return redirect()->route('dashboard.events');
     }
@@ -43,6 +49,11 @@ class EventController extends Controller
     public function update(EventRequest $request, Event $event)
     {
         $event->update($request->validated());
+
+        if ($event->date !== null) {
+            $event->date = FixTimeZone::call($request->date);
+            $event->save();
+        }
 
         return redirect()->route('dashboard.events');
     }

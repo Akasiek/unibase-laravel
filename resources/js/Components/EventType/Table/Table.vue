@@ -13,10 +13,7 @@ import { EventTypeUpdateForm } from "@/Components/EventType/Form";
 import { EventTypeDeleteDialog } from "@/Components/EventType/Delete";
 
 defineProps<{
-  eventTypes: {
-    id: number;
-    name: string;
-  }[];
+  eventTypes: EventType[];
 }>();
 </script>
 

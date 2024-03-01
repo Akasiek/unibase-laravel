@@ -2,7 +2,7 @@
 import PrimaryLayout from "@/Layouts/PrimaryLayout.vue";
 
 defineProps<{
-  lectures: any;
+  lectures: Lecture[];
 }>();
 </script>
 

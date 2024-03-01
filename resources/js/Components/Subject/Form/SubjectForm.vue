@@ -13,12 +13,7 @@ import InputError from "@/Components/InputError.vue";
 import { toast } from "@/Components/ui/toast";
 
 const { subject } = defineProps<{
-  subject?: {
-    id: number;
-    name: string;
-    color: string;
-    archived_at: string;
-  };
+  subject?: Subject;
 }>();
 
 const form = useForm({

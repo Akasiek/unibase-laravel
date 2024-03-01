@@ -4,10 +4,7 @@ import ModalContainer from "@/Components/ModalContainer.vue";
 import Form from "../Form.vue";
 
 defineProps<{
-  eventType: {
-    id: number;
-    name: string;
-  };
+  eventType: EventType;
 }>();
 </script>
 

@@ -6,33 +6,14 @@ import { EventCreateForm } from "@/Components/Event/Form";
 import { EventTable } from "@/Components/Event/Table";
 
 defineProps<{
-  events: {
-    id: number;
-    name: string;
-    date?: Date;
-    info?: string;
-    subject?: {
-      id: number;
-      name: string;
-    };
-    eventType: {
-      id: number;
-      name: string;
-    };
-  }[];
-  eventTypes: {
-    id: number;
-    name: string;
-  }[];
-  subjects: {
-    id: number;
-    name: string;
-  }[];
+  events: Event[];
+  eventTypes: EventType[];
+  subjects: Subject[];
 }>();
 </script>
 
 <template>
-  <Head title="Panel przedmiotów" />
+  <Head title="Panel wydarzeń" />
 
   <DashboardLayout
     header-title="Wydarzenia"

@@ -4,18 +4,9 @@ import ModalContainer from "@/Components/ModalContainer.vue";
 import Form from "../Form.vue";
 
 defineProps<{
-  event: {
-    id: number;
-    name: string;
-  };
-  eventTypes: {
-    id: number;
-    name: string;
-  }[];
-  subjects: {
-    id: number;
-    name: string;
-  }[];
+  event: Event;
+  eventTypes: EventType[];
+  subjects: Subject[];
 }>();
 </script>
 

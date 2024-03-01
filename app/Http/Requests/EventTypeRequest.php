@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EventTypeRequest extends FormRequest
@@ -15,6 +16,6 @@ class EventTypeRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return true;
+        return Auth::check();
     }
 }

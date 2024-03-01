@@ -4,10 +4,7 @@ interface Lecture {
   summary?: string;
   subject_id: number;
   notion_link?: string;
-  subject: {
-    id: number;
-    name: string;
-  };
+  subject: Subject;
   videos: {
     id: number;
     youtube_link: string;

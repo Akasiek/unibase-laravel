@@ -5,12 +5,7 @@ import { SubjectCreateForm } from "@/Components/Subject/Form/Create";
 import { SubjectTable } from "@/Components/Subject/Table";
 
 const { subjects } = defineProps<{
-  subjects: {
-    id: number;
-    name: string;
-    color: string;
-    is_archived: boolean;
-  }[];
+  subjects: Subject[];
 }>();
 </script>
 

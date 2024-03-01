@@ -7,21 +7,8 @@ import VideosInputs from "@/Components/Lecture/Form/VideosInputs.vue";
 import { format } from "date-fns";
 
 const { lecture } = defineProps<{
-  lecture?: {
-    id: number;
-    date: Date;
-    summary?: string;
-    subject_id: number;
-    notion_link?: string;
-    videos: {
-      id: number;
-      youtube_link: string;
-    }[];
-  };
-  subjects: {
-    id: number;
-    name: string;
-  }[];
+  lecture?: Lecture;
+  subjects: Subject[];
 }>();
 
 const form = useForm({

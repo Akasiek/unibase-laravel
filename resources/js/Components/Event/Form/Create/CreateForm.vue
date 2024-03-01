@@ -5,14 +5,8 @@ import { Button } from "@/Components/ui/button";
 import Form from "../Form.vue";
 
 defineProps<{
-  eventTypes: {
-    id: number;
-    name: string;
-  }[];
-  subjects: {
-    id: number;
-    name: string;
-  }[];
+  eventTypes: EventType[];
+  subjects: Subject[];
 }>();
 </script>
 

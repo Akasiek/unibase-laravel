@@ -13,12 +13,7 @@ import { SubjectUpdateForm } from "@/Components/Subject/Form/Update";
 import { SubjectDeleteDialog } from "@/Components/Subject/Delete";
 
 defineProps<{
-  subjects: {
-    id: number;
-    name: string;
-    color: string;
-    is_archived: boolean;
-  }[];
+  subjects: Subject[];
 }>();
 </script>
 
