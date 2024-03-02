@@ -12,6 +12,18 @@ import {
   <NavMenu>
     <MenuList>
       <MenuItem>
+        <MenuLink
+          :href="route('lectures.index')"
+          :class="navigationMenuTriggerStyle()"
+        >
+          Wykłady
+        </MenuLink>
+        <MenuLink
+          :href="route('events.index')"
+          :class="navigationMenuTriggerStyle()"
+        >
+          Wydarzenia
+        </MenuLink>
         <MenuLink :href="route('login')" :class="navigationMenuTriggerStyle()">
           Zaloguj
         </MenuLink>
