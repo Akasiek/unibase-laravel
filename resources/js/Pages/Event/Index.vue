@@ -3,6 +3,7 @@ import PrimaryLayout from "@/Layouts/PrimaryLayout.vue";
 import { Separator } from "@/Components/ui/separator";
 import { EventDataTable } from "@/Components/Event/Table";
 import { Event, EventType, Subject } from "@/Models";
+import { Head } from "@inertiajs/vue3";
 
 defineProps<{
   events: Event[];
@@ -12,6 +13,8 @@ defineProps<{
 </script>
 
 <template>
+  <Head title="Wydarzenia" />
+
   <PrimaryLayout>
     <div class="mt-8 px-4">
       <h1 class="text-lg sm:text-2xl lg:text-4xl font-bold">Wydarzenia</h1>
