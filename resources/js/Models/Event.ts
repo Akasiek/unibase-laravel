@@ -1,4 +1,7 @@
-interface Event {
+import { Subject } from "@/Models/Subject";
+import { EventType } from "@/Models/EventType";
+
+export interface Event {
   id: number;
   name: string;
   date?: Date;

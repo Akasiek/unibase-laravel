@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { NavigationMenuLink } from "@/Components/ui/navigation-menu";
 import { Link } from "@inertiajs/vue3";
+import type { Method } from "@inertiajs/core";
 
 defineProps<{
   href: string;
-  method?: string;
+  method?: Method;
 }>();
 </script>
 

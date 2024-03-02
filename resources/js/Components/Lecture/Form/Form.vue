@@ -5,6 +5,7 @@ import { toast } from "@/Components/ui/toast";
 import { DatePickerField, Select, TextField } from "@/Components/Inputs";
 import VideosInputs from "@/Components/Lecture/Form/VideosInputs.vue";
 import { format } from "date-fns";
+import { Lecture, Subject } from "@/Models";
 
 const { lecture } = defineProps<{
   lecture?: Lecture;
@@ -12,53 +13,61 @@ const { lecture } = defineProps<{
 }>();
 
 const form = useForm({
-  date: lecture?.date || "",
+  date: lecture?.date || null,
   summary: lecture?.summary || "",
   notion_link: lecture?.notion_link || "",
   subject_id: lecture?.subject_id?.toString() || "",
-  videos: lecture?.videos.map((video) => video.youtube_link) || [""],
+  videos: lecture?.videos.map(
+    (video: { id: number; youtube_link: string }) => video.youtube_link,
+  ) || [""],
 });
 
 const emit = defineEmits(["success"]);
 
 const submit = () => {
-  form.videos = prepareVideos();
-
   if (lecture) {
     form.patch(route("lectures.update", lecture.id), {
+      onBefore: () => {
+        // @ts-ignore
+        form.videos = prepareVideos();
+      },
       onSuccess: () => {
         handleSuccess();
       },
       onError: () => {
         handleError();
+        form.videos = flattenVideos();
       },
     });
     return;
   }
 
   form.post(route("lectures.store"), {
+    onBefore: () => {
+      // @ts-ignore
+      form.videos = prepareVideos();
+    },
     onSuccess: () => {
       handleSuccess();
     },
     onError: () => {
       handleError();
+      form.videos = flattenVideos();
     },
   });
-
-  form.videos = flattenVideos();
 };
 
 const prepareVideos = () =>
   form.videos.map((video) => ({ youtube_link: video }));
 
-const flattenVideos = () => form.videos.map((video) => video.youtube_link);
+const flattenVideos = () => form.videos.map((video: any) => video.youtube_link);
 
 const handleSuccess = (isEdit = false) => {
   toast({
     title: isEdit ? "Wykład zaktualizowany" : "Wykład dodany pomyślnie",
     description: isEdit
-      ? `Wykład z ${format(form.date, "yyyy-MM-dd")} został zaktualizowany.`
-      : `Wykład z ${format(form.date, "yyyy-MM-dd")} został dodany.`,
+      ? `Wykład z ${form.date !== null ? format(form.date, "yyyy-MM-dd") : ""} został zaktualizowany.`
+      : `Wykład z ${form.date !== null ? format(form.date, "yyyy-MM-dd") : ""} został dodany.`,
   });
   emit("success");
 };
@@ -88,7 +97,7 @@ const handleError = () => {
       :field-error="form.errors.subject_id"
       :options="
         subjects.map((obj) => ({
-          id: obj.id.toString(),
+          id: obj.id,
           text: obj.name,
         }))
       "

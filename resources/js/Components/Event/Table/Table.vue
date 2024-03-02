@@ -11,6 +11,7 @@ import {
 
 import { EventUpdateForm } from "@/Components/Event/Form";
 import { EventDeleteDialog } from "@/Components/Event/Delete";
+import { Event, EventType, Subject } from "@/Models";
 
 defineProps<{
   events: Event[];

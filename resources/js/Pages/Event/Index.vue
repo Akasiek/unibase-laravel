@@ -2,6 +2,7 @@
 import PrimaryLayout from "@/Layouts/PrimaryLayout.vue";
 import { Separator } from "@/Components/ui/separator";
 import { EventDataTable } from "@/Components/Event/Table";
+import { Event, EventType, Subject } from "@/Models";
 
 defineProps<{
   events: Event[];

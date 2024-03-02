@@ -25,7 +25,7 @@ defineProps<{
           <Input
             type="text"
             v-model="modelValue[index]"
-            @update:model-value="modelValue[index] = $event"
+            @update:model-value="modelValue[index] = $event as string"
             placeholder="https://www.youtube.com/watch?v=..."
           />
         </FormControl>

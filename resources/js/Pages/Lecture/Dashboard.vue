@@ -2,6 +2,7 @@
 import { Head } from "@inertiajs/vue3";
 import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 import { LectureDataTable } from "@/Components/Lecture/Table";
+import { Lecture, Subject } from "@/Models";
 
 defineProps<{
   lectures: Lecture[];

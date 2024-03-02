@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 import { Head } from "@inertiajs/vue3";
 
+import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 import { EventTypeCreateForm } from "@/Components/EventType/Form";
 import { EventTypeTable } from "@/Components/EventType/Table";
+import { EventType } from "@/Models";
 
 defineProps<{
   eventTypes: EventType[];

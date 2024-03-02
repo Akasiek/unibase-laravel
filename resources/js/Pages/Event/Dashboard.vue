@@ -2,10 +2,11 @@
 import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import { EventDataTable } from "@/Components/Event/Table";
+import { Event, EventType, Subject } from "@/Models";
 
 defineProps<{
-  events: Event[];
   eventTypes: EventType[];
+  events: Event[];
   subjects: Subject[];
 }>();
 </script>

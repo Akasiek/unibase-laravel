@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import { DataTable } from "@/Components/ui/table";
-import { ColumnDef } from "@tanstack/vue-table";
-import { usePage } from "@inertiajs/vue3";
 import { h } from "vue";
-import { Button } from "@/Components/ui/button";
+import { usePage } from "@inertiajs/vue3";
 import { ArrowUpDown } from "lucide-vue-next";
+import { ColumnDef } from "@tanstack/vue-table";
+
+import { DataTable } from "@/Components/ui/table";
+import { Button } from "@/Components/ui/button";
 import { Badge } from "@/Components/ui/badge";
 import { EventCreateForm, EventUpdateForm } from "@/Components/Event/Form";
 import { EventDeleteDialog } from "@/Components/Event/Delete";
 import SubjectSelectFilter from "@/Components/SubjectSelectFilter.vue";
 import EventTypeSelectFilter from "@/Components/Event/Table/EventTypeSelectFilter.vue";
 import { Separator } from "@/Components/ui/separator";
+import { Event, EventType, Subject } from "@/Models";
 
 const page = usePage();
 const { events, subjects, eventTypes } = defineProps<{
@@ -82,15 +84,17 @@ const columns: ColumnDef<Event>[] = [
         () => ["Przedmiot", h(ArrowUpDown, { class: "ml-2 h-4 w-4" })],
       ),
     cell: (props) =>
-      props.row.original.subject.color
-        ? h(
-            Badge,
-            {
-              style: { backgroundColor: props.row.original.subject.color },
-            },
-            props.row.original.subject.name,
-          )
-        : props.row.original.subject.name,
+      props.row.original.subject
+        ? props.row.original.subject.color
+          ? h(
+              Badge,
+              {
+                style: { backgroundColor: props.row.original.subject.color },
+              },
+              props.row.original.subject.name,
+            )
+          : props.row.original.subject.name
+        : "-",
   },
   {
     accessorKey: "info",
@@ -101,16 +105,14 @@ const columns: ColumnDef<Event>[] = [
     id: "actions",
     header: "Akcje",
     cell: (props) =>
-      h(
-        "div",
-        { class: "space-x-2" },
+      h("div", { class: "space-x-2" }, [
         h(EventUpdateForm, {
           event: props.row.original,
           subjects: subjects,
           eventTypes: eventTypes,
         }),
         h(EventDeleteDialog, { eventId: props.row.original.id }),
-      ),
+      ]),
   },
 ];
 

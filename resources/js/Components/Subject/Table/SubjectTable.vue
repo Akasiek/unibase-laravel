@@ -11,6 +11,7 @@ import {
 import { Badge } from "@/Components/ui/badge";
 import { SubjectUpdateForm } from "@/Components/Subject/Form/Update";
 import { SubjectDeleteDialog } from "@/Components/Subject/Delete";
+import { Subject } from "@/Models";
 
 defineProps<{
   subjects: Subject[];

@@ -2,6 +2,7 @@
 import PrimaryLayout from "@/Layouts/PrimaryLayout.vue";
 import { Separator } from "@/Components/ui/separator";
 import { LectureDataTable } from "@/Components/Lecture/Table";
+import { Lecture, Subject } from "@/Models";
 
 defineProps<{
   lectures: Lecture[];

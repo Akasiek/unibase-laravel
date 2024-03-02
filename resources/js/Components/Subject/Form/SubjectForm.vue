@@ -11,6 +11,7 @@ import { Checkbox } from "@/Components/ui/checkbox";
 import { Input } from "@/Components/ui/input";
 import InputError from "@/Components/InputError.vue";
 import { toast } from "@/Components/ui/toast";
+import { Subject } from "@/Models";
 
 const { subject } = defineProps<{
   subject?: Subject;

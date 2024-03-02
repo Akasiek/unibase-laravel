@@ -12,6 +12,7 @@ import { LectureDeleteDialog } from "@/Components/Lecture/Delete";
 import { DataTable } from "@/Components/ui/table";
 import { Badge } from "@/Components/ui/badge";
 import SubjectSelectFilter from "@/Components/SubjectSelectFilter.vue";
+import { Lecture, Subject } from "@/Models";
 
 const page = usePage();
 const { lectures, subjects } = defineProps<{
@@ -117,15 +118,13 @@ const columns: ColumnDef<Lecture>[] = [
     id: "actions",
     header: "Akcje",
     cell: (props) =>
-      h(
-        "div",
-        { class: "space-x-2" },
+      h("div", { class: "space-x-2" }, [
         h(LectureUpdateForm, {
           lecture: props.row.original,
           subjects: subjects,
         }),
         h(LectureDeleteDialog, { lectureId: props.row.original.id }),
-      ),
+      ]),
   },
 ];
 

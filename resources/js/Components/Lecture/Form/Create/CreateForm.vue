@@ -3,6 +3,7 @@ import { PlusIcon } from "lucide-vue-next";
 import ModalContainer from "@/Components/ModalContainer.vue";
 import { Button } from "@/Components/ui/button";
 import Form from "../Form.vue";
+import { Subject } from "@/Models";
 
 defineProps<{
   subjects: Subject[];

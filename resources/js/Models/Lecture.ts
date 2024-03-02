@@ -1,4 +1,6 @@
-interface Lecture {
+import { Subject } from "@/Models/Subject";
+
+export interface Lecture {
   id: number;
   date: Date;
   summary?: string;

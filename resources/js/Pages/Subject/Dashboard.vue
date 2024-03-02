@@ -3,6 +3,7 @@ import { Head } from "@inertiajs/vue3";
 import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 import { SubjectCreateForm } from "@/Components/Subject/Form/Create";
 import { SubjectTable } from "@/Components/Subject/Table";
+import { Subject } from "@/Models";
 
 const { subjects } = defineProps<{
   subjects: Subject[];

@@ -8,6 +8,7 @@ import {
   TextArea,
   TextField,
 } from "@/Components/Inputs";
+import { Event, EventType, Subject } from "@/Models";
 
 const { event } = defineProps<{
   event?: Event;
@@ -91,7 +92,7 @@ const handleError = () => {
       :field-error="form.errors.event_type_id"
       :options="
         eventTypes.map((obj) => ({
-          id: obj.id.toString(),
+          id: obj.id,
           text: obj.name,
         }))
       "
@@ -106,7 +107,7 @@ const handleError = () => {
       :field-error="form.errors.subject_id"
       :options="
         subjects.map((obj) => ({
-          id: obj.id.toString(),
+          id: obj.id,
           text: obj.name,
         }))
       "

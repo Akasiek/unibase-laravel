@@ -10,6 +10,7 @@ import {
 import { Input } from "@/Components/ui/input";
 import InputError from "@/Components/InputError.vue";
 import { toast } from "@/Components/ui/toast";
+import { EventType } from "@/Models";
 
 const { eventType } = defineProps<{
   eventType?: EventType;

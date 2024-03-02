@@ -44,14 +44,14 @@ defineProps<{
       <Select v-bind="componentField">
         <FormControl>
           <SelectTrigger>
-            <SelectValue :placeholder="placeholder || null" />
+            <SelectValue :placeholder="placeholder" />
           </SelectTrigger>
         </FormControl>
 
         <SelectContent>
           <SelectGroup>
             <template v-for="option in options" :key="option.id">
-              <SelectItem :value="option.id">
+              <SelectItem :value="option.id.toString()">
                 {{ option.text }}
               </SelectItem>
             </template>

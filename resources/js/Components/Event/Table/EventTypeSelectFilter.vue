@@ -8,13 +8,14 @@ import {
   SelectValue,
 } from "@/Components/ui/select";
 import { FormField, FormItem } from "@/Components/ui/form";
-import { RowData, Table } from "@tanstack/vue-table";
+import { Table } from "@tanstack/vue-table";
 import { Button } from "@/Components/ui/button";
 import { XIcon } from "lucide-vue-next";
+import { Event, EventType } from "@/Models";
 
 const { eventTypes, table } = defineProps<{
   eventTypes: EventType[];
-  table: Table<RowData>;
+  table: Table<Event>;
 }>();
 </script>
 

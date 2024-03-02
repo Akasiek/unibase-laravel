@@ -2,6 +2,7 @@
 import ModalContainer from "@/Components/ModalContainer.vue";
 import SubjectForm from "@/Components/Subject/Form/SubjectForm.vue";
 import { PencilIcon } from "lucide-vue-next";
+import { Subject } from "@/Models";
 
 defineProps<{
   subject: Subject;

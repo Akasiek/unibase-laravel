@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { PencilIcon } from "lucide-vue-next";
 import ModalContainer from "@/Components/ModalContainer.vue";
+import { Event, EventType, Subject } from "@/Models";
 import Form from "../Form.vue";
 
 defineProps<{
