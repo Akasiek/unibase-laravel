@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { usePage } from "@inertiajs/vue3";
 import { ColumnDef } from "@tanstack/vue-table";
-import { h, onMounted, ref } from "vue";
+import { h } from "vue";
 import { Button } from "@/Components/ui/button";
 import { ArrowUpDown, FileVideoIcon } from "lucide-vue-next";
-import { LectureUpdateForm } from "@/Components/Lecture/Form";
+import {
+  LectureCreateForm,
+  LectureUpdateForm,
+} from "@/Components/Lecture/Form";
 import { LectureDeleteDialog } from "@/Components/Lecture/Delete";
 import { DataTable } from "@/Components/ui/table";
-import SubjectSelect from "@/Components/Lecture/Table/SubjectSelect.vue";
 import { Badge } from "@/Components/ui/badge";
+import SubjectSelectFilter from "@/Components/SubjectSelectFilter.vue";
 
 const page = usePage();
 const { lectures, subjects } = defineProps<{
@@ -38,6 +41,7 @@ const columns: ColumnDef<Lecture>[] = [
     cell: (props) => props.row.original.summary,
   },
   {
+    id: "subject_name",
     accessorKey: "subject.name",
     header: ({ column }) =>
       h(
@@ -128,12 +132,6 @@ const columns: ColumnDef<Lecture>[] = [
 const guestColumns: ColumnDef<Lecture>[] = columns.filter(
   (column) => column.id !== "actions",
 );
-
-const data = ref<Lecture[]>([]);
-
-onMounted(() => {
-  data.value = lectures;
-});
 </script>
 
 <template>
@@ -142,10 +140,14 @@ onMounted(() => {
     :columns="$page.props.auth.user ? columns : guestColumns"
   >
     <template #header="{ table }">
-      <div class="flex items-center py-4">
-        <div class="w-64">
-          <SubjectSelect :subjects="subjects" :table="table" />
+      <div class="flex justify-between">
+        <div class="flex items-center py-4">
+          <div class="w-64">
+            <SubjectSelectFilter :subjects="subjects" :table="table" />
+          </div>
         </div>
+
+        <LectureCreateForm :subjects="subjects" />
       </div>
     </template>
   </DataTable>

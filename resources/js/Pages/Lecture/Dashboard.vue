@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Head } from "@inertiajs/vue3";
 import DashboardLayout from "@/Layouts/DashboardLayout.vue";
-import { LectureCreateForm } from "@/Components/Lecture/Form";
 import { LectureDataTable } from "@/Components/Lecture/Table";
 
 defineProps<{
@@ -17,8 +16,6 @@ defineProps<{
     header-title="Wykłady"
     header-subtext="Dodaj, edytuj lub usuń wykład."
   >
-    <LectureCreateForm :subjects="subjects" />
-
     <LectureDataTable :lectures="lectures" :subjects="subjects" />
   </DashboardLayout>
 </template>
