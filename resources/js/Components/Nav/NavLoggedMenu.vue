@@ -21,6 +21,8 @@ import MenuListItem from "@/Components/Nav/NavigationMenuListItem.vue";
         >
           Wykłady
         </MenuLink>
+      </MenuItem>
+      <MenuItem>
         <MenuLink
           :href="route('events.index')"
           :class="navigationMenuTriggerStyle()"
@@ -29,10 +31,10 @@ import MenuListItem from "@/Components/Nav/NavigationMenuListItem.vue";
         </MenuLink>
       </MenuItem>
 
-      <MenuItem>
+      <MenuItem class="relative">
         <MenuTrigger>Użytkownik</MenuTrigger>
-        <MenuContent class="right-0">
-          <ul class="grid p-4 md:grid-cols w-72">
+        <MenuContent>
+          <ul class="grid p-4 md:grid-cols w-44 md:w-72">
             <MenuListItem :href="route('profile.edit')">
               Edytuj profil
             </MenuListItem>

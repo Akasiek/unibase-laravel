@@ -138,9 +138,10 @@ const guestColumns: ColumnDef<Lecture>[] = columns.filter(
   <DataTable
     :data="lectures"
     :columns="$page.props.auth.user ? columns : guestColumns"
+    class="z-10"
   >
     <template #header="{ table }">
-      <div class="flex justify-between">
+      <div class="flex flex-wrap justify-between mb-4">
         <div class="flex items-center py-4">
           <div class="w-64">
             <SubjectSelectFilter :subjects="subjects" :table="table" />

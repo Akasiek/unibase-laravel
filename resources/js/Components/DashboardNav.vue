@@ -36,7 +36,7 @@ const pathname = ref(window.location.pathname);
 </script>
 
 <template>
-  <nav class="flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1">
+  <nav class="flex flex-wrap space-x-2 lg:flex-col lg:space-x-0 space-y-1">
     <template v-for="item in sidebarNavItems">
       <Link :href="item.href">
         <Button

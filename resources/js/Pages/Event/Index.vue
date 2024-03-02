@@ -12,8 +12,8 @@ defineProps<{
 
 <template>
   <PrimaryLayout>
-    <div class="mt-8">
-      <h1 class="text-4xl font-bold">Wydarzenia</h1>
+    <div class="mt-8 px-4">
+      <h1 class="text-lg sm:text-2xl lg:text-4xl font-bold">Wydarzenia</h1>
 
       <Separator class="mt-4 mb-8 w-64" />
 

@@ -125,13 +125,13 @@ const guestColumns: ColumnDef<Event>[] = columns.filter(
     :columns="$page.props.auth.user ? columns : guestColumns"
   >
     <template #header="{ table }">
-      <div class="flex justify-between">
-        <div class="flex items-center py-4">
+      <div class="flex flex-wrap justify-between mb-4">
+        <div class="flex gap-y-4 flex-wrap py-4">
           <div class="w-64">
             <SubjectSelectFilter :subjects="subjects" :table="table" />
           </div>
 
-          <Separator orientation="vertical" class="mx-4" />
+          <Separator orientation="vertical" class="mx-4 hidden sm:block" />
 
           <div class="w-64">
             <EventTypeSelectFilter :event-types="eventTypes" :table="table" />

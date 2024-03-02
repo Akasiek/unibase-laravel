@@ -11,10 +11,10 @@ defineProps<{
 
 <template>
   <PrimaryLayout>
-    <div class="mt-8">
-      <h1 class="text-4xl font-bold">Wykłady</h1>
+    <div class="mt-8 px-4">
+      <h1 class="text-lg sm:text-2xl lg:text-4xl font-bold">Wykłady</h1>
 
-      <Separator class="mt-4 mb-8 w-64" />
+      <Separator class="mt-4 mb-8 w-32 sm:w-44 lg:w-64" />
 
       <LectureDataTable :lectures="lectures" :subjects="subjects" />
     </div>
