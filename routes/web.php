@@ -21,7 +21,7 @@ use Inertia\Inertia;
 */
 
 Route::controller(HomeController::class)->group(function () {
-    Route::get('/', 'index')->name('home');
+    Route::get('', 'index')->name('home');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
 });
 
