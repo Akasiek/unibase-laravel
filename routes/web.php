@@ -45,7 +45,6 @@ Route::controller(SubjectController::class)->group(function () {
     Route::post('/subjects', 'store')->name('subjects.store');
     Route::get('/subjects/{subject}', 'show')->name('subjects.show');
     Route::patch('/subjects/{subject}', 'update')->name('subjects.update');
-    Route::put('/subjects/{subject}', 'update')->name('subjects.update');
     Route::delete('/subjects/{subject}', 'destroy')->name('subjects.destroy');
 });
 
