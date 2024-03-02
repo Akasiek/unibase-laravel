@@ -8,7 +8,7 @@ import { Nav } from "@/Components/Nav";
 
   <Nav />
 
-  <main class="min-h-screen max-w-7xl w-full mx-auto">
+  <main class="max-w-7xl w-full mx-auto">
     <slot />
   </main>
 </template>
