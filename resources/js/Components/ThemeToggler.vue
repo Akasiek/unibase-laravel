@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { MoonIcon, SunIcon } from "lucide-vue-next";
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
+import { changeTheme } from "@/lib/utils";
 
 const getSystemTheme = () =>
   window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -22,16 +23,6 @@ const toggleTheme = () => {
   localStorage.setItem("theme", newTheme);
 
   changeTheme(newTheme);
-};
-
-onMounted(() => {
-  changeTheme(getTheme());
-});
-
-const changeTheme = (theme: string) => {
-  const root = window.document.documentElement;
-  root.classList.remove("light", "dark");
-  root.classList.add(theme);
 };
 </script>
 

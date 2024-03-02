@@ -1,16 +1,14 @@
 <script setup lang="ts">
-import Toaster from "@/Components/ui/toast/Toaster.vue";
 import { Nav } from "@/Components/Nav";
+import WrapperLayout from "@/Layouts/WrapperLayout.vue";
 </script>
 
 <template>
-  <Toaster />
+  <WrapperLayout>
+    <Nav />
 
-  <Nav />
-
-  <main class="max-w-7xl w-full mx-auto">
-    <slot />
-  </main>
+    <main class="max-w-7xl w-full mx-auto">
+      <slot />
+    </main>
+  </WrapperLayout>
 </template>
-
-<style scoped></style>
