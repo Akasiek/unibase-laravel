@@ -1,19 +1,7 @@
 <script setup lang="ts">
 import { MoonIcon, SunIcon } from "lucide-vue-next";
 import { ref } from "vue";
-import { changeTheme } from "@/lib/utils";
-
-const getSystemTheme = () =>
-  window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-
-const getTheme = () => {
-  const theme = localStorage.getItem("theme");
-  if (theme) {
-    return theme;
-  }
-
-  return getSystemTheme();
-};
+import { changeTheme, getTheme } from "@/lib/utils";
 
 const isDark = ref(getTheme() === "dark");
 

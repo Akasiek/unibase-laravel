@@ -3,7 +3,7 @@ import { Head } from "@inertiajs/vue3";
 
 import Toaster from "@/Components/ui/toast/Toaster.vue";
 import { onMounted } from "vue";
-import { changeTheme } from "@/lib/utils";
+import { changeTheme, getTheme } from "@/lib/utils";
 
 // Get system or preferred theme
 onMounted(() => {
