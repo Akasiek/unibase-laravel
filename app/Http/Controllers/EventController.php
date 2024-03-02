@@ -13,7 +13,15 @@ class EventController extends Controller
 {
     public function index()
     {
-        return Event::all();
+        $events = Event::with('subject', 'eventType')->get();
+        $eventTypes = EventType::all();
+        $subjects = Subject::all();
+
+        return Inertia::render('Event/Index', [
+            'events' => $events,
+            'eventTypes' => $eventTypes,
+            'subjects' => $subjects
+        ]);
     }
 
     public function dashboard()

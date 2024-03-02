@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 import { Head } from "@inertiajs/vue3";
-
-import { EventCreateForm } from "@/Components/Event/Form";
-import { EventTable } from "@/Components/Event/Table";
+import { EventDataTable } from "@/Components/Event/Table";
 
 defineProps<{
   events: Event[];
@@ -19,9 +17,7 @@ defineProps<{
     header-title="Wydarzenia"
     header-subtext="Dodaj, edytuj lub usuń wydarzenia."
   >
-    <EventCreateForm :event-types="eventTypes" :subjects="subjects" />
-
-    <EventTable
+    <EventDataTable
       :events="events"
       :event-types="eventTypes"
       :subjects="subjects"
