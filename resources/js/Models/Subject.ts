@@ -3,4 +3,5 @@ interface Subject {
   name: string;
   color: string;
   archived_at: string;
+  is_archived: boolean;
 }

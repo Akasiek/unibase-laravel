@@ -16,19 +16,29 @@ import MenuListItem from "@/Components/Nav/NavigationMenuListItem.vue";
     <MenuList>
       <MenuItem>
         <MenuLink
-          :href="route('dashboard.subjects')"
+          :href="route('lectures.index')"
           :class="navigationMenuTriggerStyle()"
         >
-          Dashboard
+          Wykłady
+        </MenuLink>
+        <MenuLink
+          :href="route('events.index')"
+          :class="navigationMenuTriggerStyle()"
+        >
+          Wydarzenia
         </MenuLink>
       </MenuItem>
 
       <MenuItem>
         <MenuTrigger>Użytkownik</MenuTrigger>
         <MenuContent class="right-0">
-          <ul class="grid p-4 md:grid-cols w-56">
+          <ul class="grid p-4 md:grid-cols w-72">
             <MenuListItem :href="route('profile.edit')">
               Edytuj profil
+            </MenuListItem>
+
+            <MenuListItem :href="route('dashboard.subjects')">
+              Dashboard
             </MenuListItem>
 
             <MenuListItem :href="route('logout')" method="post">
@@ -40,5 +50,3 @@ import MenuListItem from "@/Components/Nav/NavigationMenuListItem.vue";
     </MenuList>
   </NavMenu>
 </template>
-
-<style scoped></style>

@@ -17,7 +17,7 @@ class LectureRequest extends FormRequest
             'notion_link' => ['nullable', 'string', 'url'],
 
             'videos' => ['nullable', 'array'],
-            'videos.*.youtube_link' => ['required', 'url'],
+            'videos.*.youtube_link' => ['nullable', 'url'],
         ];
     }
 

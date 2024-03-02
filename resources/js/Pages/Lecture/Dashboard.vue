@@ -2,7 +2,7 @@
 import { Head } from "@inertiajs/vue3";
 import DashboardLayout from "@/Layouts/DashboardLayout.vue";
 import { LectureCreateForm } from "@/Components/Lecture/Form";
-import { LectureTable } from "@/Components/Lecture/Table";
+import { LectureDataTable } from "@/Components/Lecture/Table";
 
 defineProps<{
   lectures: Lecture[];
@@ -19,6 +19,6 @@ defineProps<{
   >
     <LectureCreateForm :subjects="subjects" />
 
-    <LectureTable :lectures="lectures" :subjects="subjects" />
+    <LectureDataTable :lectures="lectures" :subjects="subjects" />
   </DashboardLayout>
 </template>

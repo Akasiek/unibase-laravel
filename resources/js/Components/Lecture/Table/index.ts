@@ -1,1 +1,1 @@
-export { default as LectureTable } from "./Table.vue";
+export { default as LectureDataTable } from "./DataTable.vue";

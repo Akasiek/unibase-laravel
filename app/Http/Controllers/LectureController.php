@@ -13,17 +13,12 @@ class LectureController extends Controller
 {
     public function index()
     {
-        $lectures = Lecture::get([
-            'id',
-            'date',
-            'summary',
-        ])->map(function ($lecture) {
-            $lecture->date = $lecture->date->format('Y-m-d');
-            return $lecture;
-        });
+        $lectures = Lecture::with(['subject', 'videos'])->get();
+        $subjects = Subject::all();
 
         return Inertia::render('Lecture/Index', [
             'lectures' => $lectures,
+            'subjects' => $subjects
         ]);
     }
 
@@ -41,10 +36,15 @@ class LectureController extends Controller
     public function store(LectureRequest $request)
     {
         $lecture = Lecture::create($request->validated());
-        $lecture->videos()->createMany($request->videos);
+
+        if (!empty(array_filter(
+            $request->videos, fn($video) => $video['youtube_link']
+        ))) {
+            $lecture->videos()->createMany($request->videos);
+        }
 
         // Fix date timezone
-        $lecture->date = FixTimeZone::call($request->date);
+        $lecture->date = FixTimeZone::call($lecture->date);
         $lecture->save();
 
         return redirect()->route('dashboard.lectures');
@@ -65,7 +65,12 @@ class LectureController extends Controller
             $lecture->videos()->delete();
 
             $lecture->update($request->validated());
-            $lecture->videos()->createMany($request->videos);
+
+            if (!empty(array_filter(
+                $request->videos, fn($video) => $video['youtube_link']
+            ))) {
+                $lecture->videos()->createMany($request->videos);
+            }
 
             // Fix date timezone
             $lecture->date = FixTimeZone::call($request->date);
