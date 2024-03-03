@@ -1,0 +1,7 @@
+FROM php:8.3-fpm
+
+RUN apt-get update && apt-get install -y libmcrypt-dev postgresql-client \
+    libmagickwand-dev --no-install-recommends \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
+    && docker-php-ext-install mcrypt pdo_pgsql phpredis
