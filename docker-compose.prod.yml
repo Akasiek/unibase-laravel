@@ -1,49 +1,23 @@
-version: '3.9'
+version: "3.9"
 
 services:
-  #  nginx:
-  #    image: nginx:latest
-  #    container_name: nginx
-  #    ports:
-  #      - "80:80"
-  #    volumes:
-  #      - ./nginx.conf:/etc/nginx/nginx.conf
-  #      - ./laravel:/var/www/html
-  #    depends_on:
-  #      - php
-
-  #  php:
-  #    image: php:8.3-fpm
-  #    container_name: php
-  #    volumes:
-  #      - ./laravel:/var/www/html
-  #    depends_on:
-  #      - postgres
-  #    environment:
-  #      DB_CONNECTION: postgres
-  #      DB_HOST: postgres
-  #      DB_PORT: ${DB_PORT}
-  #      DB_DATABASE: ${DB_DATABASE}
-  #      DB_USERNAME: ${DB_USERNAME}
-  #      DB_PASSWORD: ${DB_PASSWORD}
-
   php:
+    # image: dunglas/frankenphp
     build:
       context: .
-      target: unibase-php
-      args:
-        - APP_ENV=${APP_ENV}
-    environment:
-      - APP_ENV=${APP_ENV}
-    container_name: php
-    working_dir: /var/www
+    container_name: frankenphp
+    restart: always
+    ports:
+      - "18000:80" # HTTP
+      #- "18001:443" # HTTPS
+      #- "18001:443/udp" # HTTP/3
     volumes:
-      - ./:/var/www
+      - caddy_data:/data
+      - caddy_config:/config
+    tty: true
     depends_on:
       - pgsql
-      - redis
-    ports:
-      - "80:80"
+      # - redis
 
   pgsql:
     image: postgres:latest
@@ -55,13 +29,14 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  redis:
-    image: redis:alpine
-    container_name: redis
-    volumes:
-      - redis_data:/data
+  # redis:
+  #   image: redis:alpine
+  #   container_name: redis
+  #   volumes:
+  #     - redis_data:/data
 
 volumes:
+  caddy_data:
+  caddy_config:
   postgres_data:
   redis_data:
-

@@ -1,45 +1,40 @@
-FROM php:8.3-fpm as unibase-php
+FROM dunglas/frankenphp as unibase-frankenphp
 
-# Set environment variables
-ENV PHP_OPCACHE_ENABLE=1
-ENV PHP_OPCACHE_ENABLE_CLI=0
-ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS=1
-ENV PHP_OPCACHE_REVALIDATE_FREQ=1
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install dependencies.
-RUN apt-get update -y
-RUN apt-get install -y unzip libpq-dev libcurl4-gnutls-dev nginx nodejs npm
-RUN docker-php-ext-install pdo pdo_pgsql curl bcmath opcache
+# Install VIM
+RUN apt-get update && apt-get install -y vim
 
-# Copy composer executable.
-COPY --from=composer:2.3.5 /usr/bin/composer /usr/bin/composer
+# Install the PostgreSQL PHP extensions and other dependencies
+RUN install-php-extensions \
+    pgsql \
+    pdo_pgsql \
+    pcntl \
+    intl \
+    redis \
+    opcache
 
-# Copy configuration files.
-COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
-COPY ./docker/php/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
-COPY ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
+# Be sure to replace "your-domain-name.example.com" by your domain name
+ENV SERVER_NAME=unibase.coriolanus.synology.me
+# If you want to disable HTTPS, use this value instead:
+ENV SERVER_NAME=:80
 
-# Set working directory to /var/www.
-WORKDIR /var/www
+# Enable PHP production settings
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
-# Copy files from current folder to container current folder (set in workdir).
-COPY --chown=www-data:www-data . .
+# Copy the PHP files of your project in the public directory
+# COPY . /app/public
+# If you use Symfony or Laravel, you need to copy the whole project instead:
+COPY . /app
 
-# Fix files ownership.
-RUN chown -R www-data /var/www/storage
-RUN chown -R www-data /var/www/storage/framework
-RUN chown -R www-data /var/www/storage/framework/sessions
+# Change owner of storage and bootstrap/cache directories
+RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache
+RUN chmod -R 775 /app/storage /app/bootstrap/cache
 
-# Set correct permission.
-RUN chmod -R 755 /var/www/storage
-RUN chmod -R 755 /var/www/storage/logs
-RUN chmod -R 755 /var/www/storage/framework
-RUN chmod -R 755 /var/www/storage/framework/sessions
-RUN chmod -R 755 /var/www/bootstrap
-
-# Adjust user permission & group
-RUN usermod --uid 1000 www-data
-RUN groupmod --gid 1001 www-data
-
-# Run the entrypoint file.
-ENTRYPOINT [ "docker/entrypoint.sh" ]
+# Run artisan commands
+RUN php artisan key:generate && \
+    php artisan config:clear && \
+    php artisan cache:clear && \
+    php artisan config:cache && \
+    php artisan optimize
