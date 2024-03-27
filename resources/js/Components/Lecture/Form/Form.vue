@@ -17,9 +17,7 @@ const form = useForm({
   summary: lecture?.summary || "",
   notion_link: lecture?.notion_link || "",
   subject_id: lecture?.subject_id?.toString() || "",
-  videos: lecture?.videos.map(
-    (video: { id: number; youtube_link: string }) => video.youtube_link,
-  ) || [""],
+  videos: lecture?.videos || [{ youtube_link: "" }],
 });
 
 const emit = defineEmits(["success"]);
@@ -27,40 +25,25 @@ const emit = defineEmits(["success"]);
 const submit = () => {
   if (lecture) {
     form.patch(route("lectures.update", lecture.id), {
-      onBefore: () => {
-        // @ts-ignore
-        form.videos = prepareVideos();
-      },
       onSuccess: () => {
         handleSuccess();
       },
       onError: () => {
         handleError();
-        form.videos = flattenVideos();
       },
     });
     return;
   }
 
   form.post(route("lectures.store"), {
-    onBefore: () => {
-      // @ts-ignore
-      form.videos = prepareVideos();
-    },
     onSuccess: () => {
       handleSuccess();
     },
     onError: () => {
       handleError();
-      form.videos = flattenVideos();
     },
   });
 };
-
-const prepareVideos = () =>
-  form.videos.map((video) => ({ youtube_link: video }));
-
-const flattenVideos = () => form.videos.map((video: any) => video.youtube_link);
 
 const handleSuccess = (isEdit = false) => {
   toast({

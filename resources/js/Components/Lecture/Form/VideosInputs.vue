@@ -5,7 +5,7 @@ import { Separator } from "@/Components/ui/separator";
 import { Button } from "@/Components/ui/button";
 
 defineProps<{
-  modelValue: string[];
+  modelValue: { youtube_links: string }[];
 }>();
 </script>
 
@@ -15,7 +15,7 @@ defineProps<{
   <h2 class="font-semibold">Filmy YouTube</h2>
   <template v-for="(video, index) in modelValue" :key="index">
     <FormField
-      :name="`videos[${index}]`"
+      :name="`videos[${index}][youtube_link]`"
       :fieldError="undefined"
       label="Link do filmu"
       :isRequired="true"
@@ -24,8 +24,10 @@ defineProps<{
         <FormControl>
           <Input
             type="text"
-            v-model="modelValue[index]"
-            @update:model-value="modelValue[index] = $event as string"
+            v-model="modelValue[index].youtube_links"
+            @update:model-value="
+              modelValue[index].youtube_links = $event as string
+            "
             placeholder="https://www.youtube.com/watch?v=..."
           />
         </FormControl>
@@ -42,7 +44,11 @@ defineProps<{
   </template>
 
   <div>
-    <Button variant="outline" @click="modelValue.push('')" type="button">
+    <Button
+      variant="outline"
+      @click="modelValue.push({ youtube_link: '' })"
+      type="button"
+    >
       Dodaj film
     </Button>
   </div>
