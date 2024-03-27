@@ -147,7 +147,7 @@ const guestColumns: ColumnDef<Lecture>[] = columns.filter(
           </div>
         </div>
 
-        <LectureCreateForm :subjects="subjects" />
+        <LectureCreateForm :subjects="subjects" v-if="$page.props.auth.user" />
       </div>
     </template>
   </DataTable>

@@ -140,7 +140,11 @@ const guestColumns: ColumnDef<Event>[] = columns.filter(
           </div>
         </div>
 
-        <EventCreateForm :event-types="eventTypes" :subjects="subjects" />
+        <EventCreateForm
+          :event-types="eventTypes"
+          :subjects="subjects"
+          v-if="$page.props.auth.user"
+        />
       </div>
     </template>
   </DataTable>
