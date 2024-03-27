@@ -17,7 +17,7 @@ const form = useForm({
   summary: lecture?.summary || "",
   notion_link: lecture?.notion_link || "",
   subject_id: lecture?.subject_id?.toString() || "",
-  videos: lecture?.videos || [{ youtube_links: "" }],
+  videos: lecture?.videos || [{ youtube_link: "" }],
 });
 
 const emit = defineEmits(["success"]);
