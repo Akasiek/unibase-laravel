@@ -15,7 +15,7 @@ defineProps<{
   <h2 class="font-semibold">Filmy YouTube</h2>
   <template v-for="(video, index) in modelValue" :key="index">
     <FormField
-      :name="`videos[${index}][youtube_link]`"
+      :name="`videos[${index}][youtube_links]`"
       :fieldError="undefined"
       label="Link do filmu"
       :isRequired="true"
@@ -46,7 +46,7 @@ defineProps<{
   <div>
     <Button
       variant="outline"
-      @click="modelValue.push({ youtube_link: '' })"
+      @click="modelValue.push({ youtube_links: '' })"
       type="button"
     >
       Dodaj film
